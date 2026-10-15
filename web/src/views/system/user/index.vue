@@ -118,7 +118,7 @@
               fmt(record.lastLoginAt)
             }}</template>
           </a-table-column>
-          <a-table-column title="操作" :width="220" align="center">
+          <a-table-column title="操作" :width="260" align="center" fixed="right">
             <template #cell="{ record }">
               <a-button type="text" size="small" @click="openEdit(record)">
                 编辑
