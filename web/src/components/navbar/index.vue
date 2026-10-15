@@ -148,19 +148,18 @@
         <a-dropdown trigger="click">
           <a-avatar
             :size="32"
-            :style="{ marginRight: '8px', cursor: 'pointer' }"
+            :style="{
+              marginRight: '8px',
+              cursor: 'pointer',
+              backgroundColor: 'rgb(var(--arcoblue-6))',
+            }"
           >
-            <img alt="avatar" :src="avatar" />
+            <img v-if="avatar" alt="avatar" :src="avatar" />
+            <template v-else>{{
+              (userStore.name || 'U').slice(0, 1)
+            }}</template>
           </a-avatar>
           <template #content>
-            <a-doption>
-              <a-space @click="switchRoles">
-                <icon-tag />
-                <span>
-                  {{ $t('messageBox.switchRoles') }}
-                </span>
-              </a-space>
-            </a-doption>
             <a-doption>
               <a-space @click="$router.push({ name: 'Info' })">
                 <icon-user />
@@ -194,7 +193,6 @@
 
 <script lang="ts" setup>
   import { computed, ref, inject } from 'vue';
-  import { Message } from '@arco-design/web-vue';
   import { useDark, useToggle, useFullscreen } from '@vueuse/core';
   import { useAppStore, useUserStore } from '@/store';
   import { LOCALE_OPTIONS } from '@/locale';
@@ -254,10 +252,6 @@
       cancelable: true,
     });
     triggerBtn.value.dispatchEvent(event);
-  };
-  const switchRoles = async () => {
-    const res = await userStore.switchRoles();
-    Message.success(res as string);
   };
   const toggleDrawerMenu = inject('toggleDrawerMenu') as () => void;
 </script>

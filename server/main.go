@@ -91,8 +91,7 @@ func seed(db *gorm.DB) error {
 	adminPw, _ := handler.HashPassword("admin")
 	userPw, _ := handler.HashPassword("user")
 	users := []model.User{
-		{Username: "admin", Password: adminPw, Nickname: "管理员", Email: "admin@example.com", RoleID: admin.ID, Status: model.StatusEnabled,
-			Avatar: "//lf1-xgcdn-tos.pstatp.com/obj/vcloud/vadmin/start.8e0e4855ee346a46ccff8ff3e24db27b.png"},
+		{Username: "admin", Password: adminPw, Nickname: "管理员", Email: "admin@example.com", RoleID: admin.ID, Status: model.StatusEnabled},
 		{Username: "user", Password: userPw, Nickname: "演示用户", Email: "user@example.com", RoleID: user.ID, Status: model.StatusEnabled},
 	}
 	return db.Create(&users).Error

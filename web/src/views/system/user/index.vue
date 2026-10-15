@@ -4,14 +4,9 @@
     <a-card class="general-card" :title="$t('menu.system.user')">
       <a-row>
         <a-col :flex="1">
-          <a-form
-            :model="query"
-            :label-col-props="{ span: 6 }"
-            :wrapper-col-props="{ span: 18 }"
-            label-align="left"
-          >
+          <a-form :model="query" auto-label-width label-align="left">
             <a-row :gutter="16">
-              <a-col :span="8">
+              <a-col :xs="24" :md="8">
                 <a-form-item field="username" label="用户">
                   <a-input
                     v-model="query.username"
@@ -21,7 +16,7 @@
                   />
                 </a-form-item>
               </a-col>
-              <a-col :span="8">
+              <a-col :xs="24" :md="8">
                 <a-form-item field="roleId" label="角色">
                   <a-select
                     v-model="query.roleId"
@@ -31,7 +26,7 @@
                   />
                 </a-form-item>
               </a-col>
-              <a-col :span="8">
+              <a-col :xs="24" :md="8">
                 <a-form-item field="status" label="状态">
                   <a-select
                     v-model="query.status"
@@ -69,6 +64,7 @@
         :loading="loading"
         :data="list"
         :pagination="pagination"
+        :scroll="{ x: 1100 }"
         :bordered="false"
         @page-change="onPageChange"
       >

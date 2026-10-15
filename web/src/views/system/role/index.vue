@@ -21,6 +21,7 @@
         :loading="loading"
         :data="list"
         :pagination="pagination"
+        :scroll="{ x: 900 }"
         :bordered="false"
         @page-change="onPageChange"
       >
