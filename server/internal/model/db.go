@@ -10,7 +10,7 @@ import (
 	"gorm.io/gorm/logger"
 )
 
-const DefaultAvatar = "//lf1-xgcdn-tos.pstatp.com/obj/vcloud/vadmin/start.8e0e4855ee346a46ccff8ff3e24db27b.png"
+const DefaultAvatar = ""
 
 func Open(path string) (*gorm.DB, error) {
 	if dir := filepath.Dir(path); dir != "." {

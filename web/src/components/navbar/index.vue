@@ -2,10 +2,7 @@
   <div class="navbar">
     <div class="left-side">
       <a-space>
-        <img
-          alt="logo"
-          src="//p3-armor.byteimg.com/tos-cn-i-49unhts6dw/dfdba5317c0c20ce20e64fac803d52bc.svg~tplv-49unhts6dw-image.image"
-        />
+        <img alt="logo" :src="logoUrl" />
         <a-typography-title
           :style="{ margin: 0, fontSize: '18px' }"
           :heading="5"
@@ -150,17 +147,10 @@
             :size="32"
             :style="{ marginRight: '8px', cursor: 'pointer' }"
           >
-            <img alt="avatar" :src="avatar" />
+            <img v-if="avatar" alt="avatar" :src="avatar" />
+            <span v-else>{{ userStore.name?.[0] }}</span>
           </a-avatar>
           <template #content>
-            <a-doption>
-              <a-space @click="switchRoles">
-                <icon-tag />
-                <span>
-                  {{ $t('messageBox.switchRoles') }}
-                </span>
-              </a-space>
-            </a-doption>
             <a-doption>
               <a-space @click="$router.push({ name: 'Info' })">
                 <icon-user />
@@ -193,8 +183,8 @@
 </template>
 
 <script lang="ts" setup>
+  import logoUrl from '@/assets/logo.svg?url';
   import { computed, ref, inject } from 'vue';
-  import { Message } from '@arco-design/web-vue';
   import { useDark, useToggle, useFullscreen } from '@vueuse/core';
   import { useAppStore, useUserStore } from '@/store';
   import { LOCALE_OPTIONS } from '@/locale';
@@ -254,10 +244,6 @@
       cancelable: true,
     });
     triggerBtn.value.dispatchEvent(event);
-  };
-  const switchRoles = async () => {
-    const res = await userStore.switchRoles();
-    Message.success(res as string);
   };
   const toggleDrawerMenu = inject('toggleDrawerMenu') as () => void;
 </script>
